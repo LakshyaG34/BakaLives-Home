@@ -1,0 +1,112 @@
+.service-levels {
+  padding: 32px 32px 88px;
+  background: #fff;
+
+  &-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    width: min(100%, 1680px);
+    margin: 0 auto;
+  }
+}
+
+.service-level-card {
+  position: relative;
+  min-width: 0;
+  aspect-ratio: 1.3 / 1;
+  overflow: hidden;
+  background: #eeeee9;
+
+  .service-level-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 650ms cubic-bezier(0.2, 0.65, 0.3, 1);
+  }
+
+  &:hover .service-level-image { transform: scale(1.045); }
+
+  &::after {
+    position: absolute;
+    inset: 45% 0 0;
+    background: linear-gradient(180deg, transparent, rgba(18, 21, 17, 0.23));
+    content: "";
+    pointer-events: none;
+  }
+}
+
+.service-level-link {
+  position: absolute;
+  right: 50%;
+  bottom: 7%;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(12px, 1.5vw, 24px);
+  width: max-content;
+  max-width: calc(100% - 32px);
+  min-height: 72px;
+  padding: 12px clamp(20px, 2vw, 34px);
+  background: #fff;
+  border-radius: 100px;
+  box-shadow: 0 6px 24px rgba(25, 29, 24, 0.1);
+  transform: translateX(50%);
+  transition: color 220ms ease, background 220ms ease, padding 220ms ease, box-shadow 220ms ease;
+
+  &:hover {
+    padding-right: clamp(22px, 2.4vw, 39px);
+    padding-left: clamp(22px, 2.4vw, 39px);
+    color: #fff;
+    background: #1d201d;
+    box-shadow: 0 9px 30px rgba(25, 29, 24, 0.2);
+  }
+}
+
+.service-level-title {
+  font: 500 clamp(19px, 2.05vw, 30px)/1 "Manrope", sans-serif;
+  letter-spacing: -1.1px;
+  white-space: nowrap;
+}
+
+.service-level-divider { width: 1px; height: 34px; background: rgba(29, 32, 29, 0.35); transition: background 220ms ease; }
+.service-level-link:hover .service-level-divider { background: rgba(255, 255, 255, 0.5); }
+.service-level-more { font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; white-space: nowrap; }
+.service-level-arrow { display: none; font-size: 18px; }
+
+.wow { visibility: hidden; }
+.wow.animated { visibility: visible; animation-duration: 0.8s; animation-fill-mode: both; }
+.wow.fadeInUp.animated { animation-name: service-fade-in-up; }
+
+@keyframes service-fade-in-up {
+  from { opacity: 0; transform: translate3d(0, 34px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+@media (max-width: 900px) {
+  .service-levels { padding: 26px 24px 70px; }
+  .service-levels-grid { gap: 16px; }
+  .service-level-card { aspect-ratio: 0.92 / 1; }
+  .service-level-link { bottom: 6%; gap: 11px; min-height: 55px; padding: 10px 15px; }
+  .service-level-title { font-size: clamp(16px, 2.3vw, 21px); letter-spacing: -0.6px; }
+  .service-level-divider { height: 25px; }
+  .service-level-more { font-size: 9px; letter-spacing: 0.65px; }
+}
+
+@media (max-width: 620px) {
+  .service-levels { padding: 20px 20px 60px; }
+  .service-levels-grid { grid-template-columns: 1fr; gap: 16px; }
+  .service-level-card { aspect-ratio: 1.28 / 1; }
+  .service-level-link { gap: 16px; min-height: 62px; padding: 11px 22px; }
+  .service-level-title { font-size: clamp(21px, 6vw, 27px); }
+  .service-level-more { font-size: 10px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .service-level-card .service-level-image,
+  .service-level-link,
+  .service-level-divider { transition-duration: 0.01ms; }
+  .wow.animated { animation-duration: 0.01ms; }
+}

@@ -1,0 +1,64 @@
+.site-top-anchor { position: absolute; top: 0; left: 0; width: 1px; height: 1px; }
+
+.contact-page {
+  padding: 136px 48px 100px;
+  color: #111;
+  background: #fff;
+}
+
+.contact-intro { max-width: 880px; margin: 0 auto; text-align: center; }
+.contact-eyebrow { color: #666; font-size: 10px; font-weight: 700; letter-spacing: 1.8px; }
+.contact-intro h1 { margin: 17px 0 15px; font: 700 clamp(46px, 7vw, 82px)/.98 "Manrope", sans-serif; letter-spacing: -.075em; }
+.contact-intro p { max-width: 660px; margin: 0 auto; color: #666; font-size: 15px; line-height: 1.75; }
+
+.contact-inquiry-types { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; width: min(100%, 1190px); margin: 62px auto 75px; }
+.contact-type-card { min-height: 218px; padding: 25px 27px; background: #f5f5f5; }
+.contact-type-number { color: #777; font-size: 10px; font-weight: 600; letter-spacing: 1.3px; }
+.contact-type-card h2 { margin: 25px 0 9px; font: 600 19px/1.3 "Manrope", sans-serif; letter-spacing: -.4px; }
+.contact-type-card p { max-width: 320px; margin: 0; color: #666; font-size: 12px; line-height: 1.7; }
+
+.contact-form-section { width: min(100%, 1120px); margin: 0 auto; padding: clamp(26px, 5vw, 64px); background: #fafafa; border: 1px solid #ececec; }
+.contact-form-heading { margin-bottom: 36px; }
+.contact-form-heading h2 { margin: 12px 0 8px; font: 600 clamp(28px, 4vw, 42px)/1.12 "Manrope", sans-serif; letter-spacing: -.06em; }
+.contact-form-heading p { margin: 0; color: #777; font-size: 12px; }
+.contact-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 34px; }
+.contact-field { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.contact-field-full { grid-column: 1 / -1; }
+.contact-field label { font-size: 13px; font-weight: 600; }
+.contact-field label span { color: #555; }
+.contact-field input,
+.contact-field select,
+.contact-field textarea { width: 100%; min-width: 0; padding: 13px 2px; color: #111; background: transparent; border: 0; border-bottom: 1px solid #c9c9c9; border-radius: 0; outline: 0; font: inherit; font-size: 13px; }
+.contact-field select { appearance: none; background-image: linear-gradient(45deg, transparent 50%, #555 50%), linear-gradient(135deg, #555 50%, transparent 50%); background-position: calc(100% - 8px) 19px, calc(100% - 3px) 19px; background-repeat: no-repeat; background-size: 5px 5px, 5px 5px; cursor: pointer; }
+.contact-field textarea { min-height: 120px; resize: vertical; line-height: 1.6; }
+.contact-field input::placeholder,
+.contact-field textarea::placeholder { color: #888; opacity: 1; }
+.contact-field input:focus,
+.contact-field select:focus,
+.contact-field textarea:focus { border-bottom-color: #111; }
+.contact-submit-row { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 16px 22px; }
+.contact-submit { display: inline-flex; align-items: center; justify-content: space-between; gap: 30px; min-width: 245px; min-height: 52px; padding: 0 19px; color: #fff; background: #111; border: 1px solid #111; font: inherit; font-size: 12px; font-weight: 600; cursor: pointer; transition: color 180ms ease, background 180ms ease; }
+.contact-submit:hover { color: #111; background: transparent; }
+.contact-submit span { font-size: 17px; }
+.contact-form-status { flex: 1 1 260px; margin: 0; color: #555; font-size: 11px; line-height: 1.6; }
+
+@media (max-width: 900px) {
+  .contact-page { padding-right: 28px; padding-left: 28px; }
+  .contact-inquiry-types { gap: 12px; margin-top: 48px; }
+  .contact-type-card { padding: 22px 19px; }
+  .contact-type-card h2 { font-size: 17px; }
+  .contact-form-section { padding: 32px; }
+}
+
+@media (max-width: 650px) {
+  .contact-page { padding: 115px 20px 64px; }
+  .contact-intro h1 { font-size: clamp(40px, 11vw, 60px); }
+  .contact-intro p { font-size: 13px; }
+  .contact-inquiry-types { grid-template-columns: 1fr; max-width: 500px; margin: 36px auto 48px; }
+  .contact-type-card { min-height: 0; padding: 20px; }
+  .contact-type-card h2 { margin: 17px 0 7px; }
+  .contact-form-section { padding: 24px 19px; }
+  .contact-form { grid-template-columns: 1fr; gap: 22px; }
+  .contact-field-full, .contact-submit-row { grid-column: auto; }
+  .contact-submit { width: 100%; }
+}
