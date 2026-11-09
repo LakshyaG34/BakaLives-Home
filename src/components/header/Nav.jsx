@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 
 const templates = [
-  { label: "Ecommerce", slug: "ecommerce" },
-  { label: "CMS", slug: "cms" },
-  { label: "Blogging", slug: "blogging" },
-  { label: "Site templates", slug: "site-templates" },
-  { label: "Marketing", slug: "marketing" },
+  { label: "Ecommerce", slug: "ecommerce", thumbnail: "/images/template-thumbnail/template-ecommerce.webp" },
+  { label: "CRM", slug: "cms", thumbnail: "/images/template-thumbnail/template-crm.png" },
+  { label: "CMS", slug: "blogging", thumbnail: "/images/template-thumbnail/templates-cms.png" },
+  { label: "Site templates", slug: "site-templates", thumbnail: "/images/template-thumbnail/template-site.png" },
+  { label: "Marketing", slug: "marketing", thumbnail: "/images/template-thumbnail/template-marketing.webp" },
 ];
 
 const services = [
@@ -40,10 +40,7 @@ export default function Nav({ isOpen, onNavigate }) {
               {templates.map((template, index) => (
                 <Link className={`template-card template-card-${index + 1}`} to={`/templates/${template.slug}`} key={template.slug} onClick={onNavigate}>
                   <span className="template-preview" aria-hidden="true">
-                    <span className="preview-topline" />
-                    <span className="preview-heading" />
-                    <span className="preview-copy" />
-                    <span className="preview-art" />
+                    <img src={template.thumbnail} alt="" />
                   </span>
                   <span className="template-caption">
                     <span>{template.label}</span><span className="template-arrow" aria-hidden="true">↗</span>
