@@ -21,6 +21,11 @@ const services = [
 ];
 
 export default function Nav({ isOpen, onNavigate }) {
+  const handleNavigate = (event) => {
+    onNavigate?.();
+    event.currentTarget.blur();
+  };
+
   return (
     <nav className={`main-navigation${isOpen ? " is-open" : ""}`} aria-label="Main navigation">
       <ul className="nav-list">
@@ -34,11 +39,11 @@ export default function Nav({ isOpen, onNavigate }) {
                 <span className="eyebrow">EXPLORE THE COLLECTION</span>
                 <h2>Made to move your brand forward.</h2>
               </div>
-              <Link to="/templates" className="menu-view-all" onClick={onNavigate}>View all templates <span aria-hidden="true">↗</span></Link>
+              <Link to="/templates" className="menu-view-all" onClick={handleNavigate}>View all templates <span aria-hidden="true">↗</span></Link>
             </div>
             <div className="template-grid">
               {templates.map((template, index) => (
-                <Link className={`template-card template-card-${index + 1}`} to={`/templates/${template.slug}`} key={template.slug} onClick={onNavigate}>
+                <Link className={`template-card template-card-${index + 1}`} to={`/templates/${template.slug}`} key={template.slug} onClick={handleNavigate}>
                   <span className="template-preview" aria-hidden="true">
                     <img src={template.thumbnail} alt="" />
                   </span>
@@ -64,7 +69,7 @@ export default function Nav({ isOpen, onNavigate }) {
             <ul className="services-list">
               {services.map((service, index) => (
                 <li key={service}>
-                  <a href="#services" onClick={onNavigate}>
+                  <a href="#services" onClick={handleNavigate}>
                     <span className="service-number">0{index + 1}</span>
                     <span>{service}</span>
                     <span className="service-arrow" aria-hidden="true">↗</span>
@@ -75,10 +80,10 @@ export default function Nav({ isOpen, onNavigate }) {
           </div>
         </li>
 
-        <li className="nav-item"><Link className="nav-link" to="/pricing" onClick={onNavigate}>Pricing</Link></li>
-        <li className="nav-item"><Link className="nav-link" to="/about" onClick={onNavigate}>About</Link></li>
-        <li className="nav-item"><a className="nav-link" href="#work" onClick={onNavigate}>Previous works</a></li>
-        <li className="nav-item nav-contact"><Link className="contact-link" to="/contact" onClick={onNavigate}>Contact us <span aria-hidden="true">↗</span></Link></li>
+        <li className="nav-item"><Link className="nav-link" to="/pricing" onClick={handleNavigate}>Pricing</Link></li>
+        <li className="nav-item"><Link className="nav-link" to="/about" onClick={handleNavigate}>About</Link></li>
+        <li className="nav-item"><a className="nav-link" href="#work" onClick={handleNavigate}>Previous works</a></li>
+        <li className="nav-item nav-contact"><Link className="contact-link" to="/contact" onClick={handleNavigate}>Contact us <span aria-hidden="true">↗</span></Link></li>
       </ul>
     </nav>
   );
