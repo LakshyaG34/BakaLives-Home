@@ -52,6 +52,15 @@ const crmTemplates = [
   },
 ];
 
+const marketingTemplates = [
+  {
+    name: "Nimo",
+    description: "Digital agency landing page",
+    preview: "https://themexriver.com/wp/nimo/home-01-onepage/",
+    thumbnail: "/images/template-thumbnail/template-themexriver.png",
+  },
+];
+
 const examples = ["Template 01", "Template 02", "Template 03"];
 
 export default function TemplateCategoryPage() {
@@ -59,7 +68,11 @@ export default function TemplateCategoryPage() {
   const current = categories[category];
   const title = current?.title || "Website templates";
   const description = current?.description || "Explore our collection of website template concepts.";
-  const featuredTemplates = category === "ecommerce" ? ecommerceTemplates : category === "crm" ? crmTemplates : null;
+  const featuredTemplates = {
+    ecommerce: ecommerceTemplates,
+    crm: crmTemplates,
+    marketing: marketingTemplates,
+  }[category];
 
   useEffect(() => {
     document.title = `${title} | Bakalives`;
