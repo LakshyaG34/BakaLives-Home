@@ -1,6 +1,12 @@
 import { Link } from "react-router-dom";
 
-const templates = ["Template 1", "Template 2", "Template 3", "Template 4"];
+const templates = [
+  { label: "Ecommerce", slug: "ecommerce" },
+  { label: "CMS", slug: "cms" },
+  { label: "Blogging", slug: "blogging" },
+  { label: "Site templates", slug: "site-templates" },
+  { label: "Marketing", slug: "marketing" },
+];
 
 const services = [
   "Shopify store setup",
@@ -28,11 +34,11 @@ export default function Nav({ isOpen, onNavigate }) {
                 <span className="eyebrow">EXPLORE THE COLLECTION</span>
                 <h2>Made to move your brand forward.</h2>
               </div>
-              <a href="#templates" className="menu-view-all">View all templates <span aria-hidden="true">↗</span></a>
+              <Link to="/templates" className="menu-view-all" onClick={onNavigate}>View all templates <span aria-hidden="true">↗</span></Link>
             </div>
             <div className="template-grid">
               {templates.map((template, index) => (
-                <a className={`template-card template-card-${index + 1}`} href="#templates" key={template} onClick={onNavigate}>
+                <Link className={`template-card template-card-${index + 1}`} to={`/templates/${template.slug}`} key={template.slug} onClick={onNavigate}>
                   <span className="template-preview" aria-hidden="true">
                     <span className="preview-topline" />
                     <span className="preview-heading" />
@@ -40,9 +46,9 @@ export default function Nav({ isOpen, onNavigate }) {
                     <span className="preview-art" />
                   </span>
                   <span className="template-caption">
-                    <span>{template}</span><span className="template-arrow" aria-hidden="true">↗</span>
+                    <span>{template.label}</span><span className="template-arrow" aria-hidden="true">↗</span>
                   </span>
-                </a>
+                </Link>
               ))}
             </div>
           </div>

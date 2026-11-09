@@ -7,6 +7,7 @@ const HomePage = lazy(() => import("./pages/HomePage.jsx"));
 const PricingPage = lazy(() => import("./pages/pricing/index.jsx"));
 const ContactPage = lazy(() => import("./pages/contact/index.jsx"));
 const AboutPage = lazy(() => import("./pages/about/index.jsx"));
+const TemplateCategoryPage = lazy(() => import("./pages/templates/index.jsx"));
 
 export default function App() {
   const { pathname } = useLocation();
@@ -25,6 +26,8 @@ export default function App() {
           <Route path="/pricing" element={<PricingPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/templates" element={<TemplateCategoryPage />} />
+          <Route path="/templates/:category" element={<TemplateCategoryPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Suspense>

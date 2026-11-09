@@ -121,7 +121,7 @@
 .mega-menu h2 { max-width: 500px; margin: 0; font: 600 24px/1.25 "Manrope", sans-serif; letter-spacing: -0.8px; }
 .menu-view-all { display: inline-flex; gap: 12px; align-items: center; padding-bottom: 4px; border-bottom: 1px solid #c7c8c3; font-size: 13px; font-weight: 600; }
 
-.template-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+.template-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 18px; }
 .template-card { display: block; min-width: 0; }
 .template-preview {
   position: relative;
