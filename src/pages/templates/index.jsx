@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 
 const categories = {
   ecommerce: { title: "Ecommerce templates", description: "Storefront concepts for brands ready to sell online." },
+  crm: { title: "CRM templates", description: "Customer relationship and sales dashboard concepts for growing teams." },
   cms: { title: "CMS templates", description: "Flexible website starting points for content-managed experiences." },
-  blogging: { title: "Blogging templates", description: "Editorial layouts for publishing ideas, stories, and updates." },
   "site-templates": { title: "Site templates", description: "Versatile website designs for businesses and growing teams." },
   marketing: { title: "Marketing templates", description: "Landing page concepts made to present offers and drive action." },
 };
@@ -31,6 +31,27 @@ const ecommerceTemplates = [
   },
 ];
 
+const crmTemplates = [
+  {
+    name: "Isomorphic",
+    description: "Workspace and business dashboard",
+    preview: "https://isomorphic-furyroad.vercel.app/",
+    thumbnail: "/images/template-thumbnail/template-isomorphic.png",
+  },
+  {
+    name: "Sales CRM",
+    description: "Sales deals and pipeline dashboard",
+    preview: "https://crms.dreamstechnologies.com/sales-crm/react/deals-dashboard",
+    thumbnail: "/images/template-thumbnail/template-dreamtechnologies.png",
+  },
+  {
+    name: "NexLink",
+    description: "CRM admin and analytics dashboard",
+    preview: "https://nexlink.layoutdrop.com/demo/index.html",
+    thumbnail: "/images/template-thumbnail/template-nexlink.png",
+  },
+];
+
 const examples = ["Template 01", "Template 02", "Template 03"];
 
 export default function TemplateCategoryPage() {
@@ -38,6 +59,7 @@ export default function TemplateCategoryPage() {
   const current = categories[category];
   const title = current?.title || "Website templates";
   const description = current?.description || "Explore our collection of website template concepts.";
+  const featuredTemplates = category === "ecommerce" ? ecommerceTemplates : category === "crm" ? crmTemplates : null;
 
   useEffect(() => {
     document.title = `${title} | Bakalives`;
@@ -53,12 +75,12 @@ export default function TemplateCategoryPage() {
         </motion.div>
       </section>
       <section className="templates-page-content" aria-label={`${title} list`}>
-        {category === "ecommerce" ? (
+        {featuredTemplates ? (
           <div className="templates-page-grid">
-            {ecommerceTemplates.map((template, index) => (
+            {featuredTemplates.map((template, index) => (
               <motion.article className="templates-example templates-example-card" key={template.name} initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45, delay: index * 0.1 }}>
                 <a className="templates-example-image-link" href={template.preview} target="_blank" rel="noreferrer" aria-label={`Open ${template.name} live preview`}>
-                  <img className="templates-example-image" src={template.thumbnail} alt={`${template.name} ecommerce storefront preview`} />
+                  <img className="templates-example-image" src={template.thumbnail} alt={`${template.name} template preview`} />
                 </a>
                 <div className="templates-example-details">
                   <h2>{template.name}</h2>

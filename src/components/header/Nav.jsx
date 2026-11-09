@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 
 const templates = [
   { label: "Ecommerce", slug: "ecommerce", thumbnail: "/images/template-thumbnail/template-ecommerce.webp" },
-  { label: "CRM", slug: "cms", thumbnail: "/images/template-thumbnail/template-crm.png" },
-  { label: "CMS", slug: "blogging", thumbnail: "/images/template-thumbnail/templates-cms.png" },
+  { label: "CRM", slug: "crm", thumbnail: "/images/template-thumbnail/template-crm.png" },
+  { label: "CMS", slug: "cms", thumbnail: "/images/template-thumbnail/templates-cms.png" },
   { label: "Site templates", slug: "site-templates", thumbnail: "/images/template-thumbnail/template-site.png" },
   { label: "Marketing", slug: "marketing", thumbnail: "/images/template-thumbnail/template-marketing.webp" },
 ];
