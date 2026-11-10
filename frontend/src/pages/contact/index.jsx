@@ -12,6 +12,7 @@ const inquiryTypes = [
 export default function ContactPage() {
   const [searchParams] = useSearchParams();
   const [formMessage, setFormMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const requestedPlan = searchParams.get("plan");
   const initialPlan = packages.includes(requestedPlan) ? requestedPlan : "";
 
@@ -21,9 +22,32 @@ export default function ContactPage() {
     return () => { document.title = previousTitle; };
   }, []);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    setFormMessage("This form is ready to connect to your email or CRM service.");
+    setIsSubmitting(true);
+    setFormMessage("");
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const inquiry = Object.fromEntries(formData.entries());
+
+    try {
+      const apiUrl = import.meta.env.VITE_API_URL || "";
+      const response = await fetch(`${apiUrl}/api/inquiries`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(inquiry),
+      });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error || "Unable to send your inquiry.");
+
+      form.reset();
+      setFormMessage("Thanks. Your project inquiry has been sent.");
+    } catch (error) {
+      setFormMessage(error.message || "Unable to send your inquiry. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -95,7 +119,9 @@ export default function ContactPage() {
             <textarea id="contact-message" name="message" rows="6" placeholder="Tell us about your goals, features, integrations, or questions." required />
           </div>
           <div className="contact-submit-row">
-            <button className="contact-submit" type="submit">Send project inquiry <span aria-hidden="true">↗</span></button>
+            <button className="contact-submit" type="submit" disabled={isSubmitting}>
+              {isSubmitting ? "Sending…" : "Send project inquiry"} <span aria-hidden="true">↗</span>
+            </button>
             <p className="contact-form-status" aria-live="polite">{formMessage}</p>
           </div>
         </form>
