@@ -1,17 +1,33 @@
 import { app } from "./app.js";
 import { env } from "./config/env.js";
+import { runMigrations } from "./db/migrate.js";
 import { closeDatabase } from "./db/pool.js";
 
-const server = app.listen(env.port, () => {
-  console.log(`Bakalives API listening on port ${env.port}`);
-});
+let server;
 
 async function shutdown() {
-  server.close(async () => {
-    await closeDatabase();
-    process.exit(0);
+  if (server) await new Promise((resolve) => server.close(resolve));
+  await closeDatabase();
+}
+
+async function start() {
+  await runMigrations();
+  server = app.listen(env.port, () => {
+    console.log(`Bakalives API listening on port ${env.port}`);
   });
 }
 
-process.on("SIGINT", shutdown);
-process.on("SIGTERM", shutdown);
+start().catch(async (error) => {
+  console.error("API startup failed:", error);
+  await closeDatabase();
+  process.exitCode = 1;
+});
+
+for (const signal of ["SIGINT", "SIGTERM"]) {
+  process.once(signal, () => {
+    shutdown().catch((error) => {
+      console.error("API shutdown failed:", error);
+      process.exitCode = 1;
+    });
+  });
+}

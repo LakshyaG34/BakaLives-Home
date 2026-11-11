@@ -9,7 +9,6 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      - ./backend/migrations/001_create_inquiries.sql:/docker-entrypoint-initdb.d/001_create_inquiries.sql:ro
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U bakalives -d bakalives"]
       interval: 5s
@@ -18,8 +17,10 @@ services:
 
   api:
     build: ./backend
+    env_file:
+      - ./backend/.env
     environment:
-      PORT: 4000
+      API_PORT: 4000
       DATABASE_URL: postgresql://bakalives:bakalives@db:5432/bakalives
       CLIENT_ORIGINS: http://localhost:5173
     ports:
